@@ -598,13 +598,13 @@ function getBusApiClient () {
  */
 async function postBusEvent (topic, payload) {
   const client = getBusApiClient()
-  await client.postEvent({
-    topic,
-    originator: constants.EVENT_ORIGINATOR,
-    timestamp: new Date().toISOString(),
-    'mime-type': constants.EVENT_MIME_TYPE,
-    payload
-  })
+  // await client.postEvent({
+  //   topic,
+  //   originator: constants.EVENT_ORIGINATOR,
+  //   timestamp: new Date().toISOString(),
+  //   'mime-type': constants.EVENT_MIME_TYPE,
+  //   payload
+  // })
 }
 
 /**

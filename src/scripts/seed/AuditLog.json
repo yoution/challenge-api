@@ -1,0 +1,35 @@
+[
+  {
+    "computed": "5fa04185-041f-49a6-bfd1-fe82533cd6c8_fieldName_member1",
+    "id": "5fa04185-041f-49a6-bfd1-fe82533cd6c5",
+    "challengeId": "5fa04185-041f-49a6-bfd1-fe82533cd6c8",
+    "fieldName": "filedName",
+    "oldValue": "oldValue",
+    "newValue": "newValue",
+    "created": "",
+    "createdBy": true,
+    "memberId": "member1"
+  },
+  {
+    "computed": "5fa04185-041f-49a6-bfd1-fe82533cd6c8_fieldName_member2",
+    "id": "5fa04185-041f-49a6-bfd1-fe82533cd6c6",
+    "challengeId": "5fa04185-041f-49a6-bfd1-fe82533cd6c8",
+    "fieldName": "filedName",
+    "oldValue": "oldValue",
+    "newValue": "newValue",
+    "created": "",
+    "createdBy": true,
+    "memberId": "member2"
+  },
+  {
+    "computed": "5fa04185-041f-49a6-bfd1-fe82533cd6c8_fieldName2_member2",
+    "id": "5fa04185-041f-49a6-bfd1-fe82533cd6c7",
+    "challengeId": "5fa04185-041f-49a6-bfd1-fe82533cd6c8",
+    "fieldName": "filedName2",
+    "oldValue": "oldValue",
+    "newValue": "newValue",
+    "created": "",
+    "createdBy": true,
+    "memberId": "member2"
+  }
+]

@@ -1,6 +1,71 @@
 const newman = require('newman')
 const _ = require('lodash')
 
+const challengeRequests = [
+  {
+    folder: 'create challenge by admin',
+    iterationData: require('./testData/challenge-phase/create-challenge-by-admin.json')
+  },
+  {
+    folder: 'create challenge by invalid token',
+    iterationData: require('./testData/challenge/create-challenge-by-invalid-token.json')
+  },
+  {
+    folder: 'create challenge by error field',
+    iterationData: require('./testData/challenge/create-challenge-by-error-field.json')
+  },
+  {
+    folder: 'get challenge - id'
+  },
+  {
+    folder: 'get challenge - all'
+  },
+  {
+    folder: 'get challenge - not found'
+  },
+  {
+    folder: 'fully update challenge by admin',
+    iterationData: require('./testData/challenge/fully-update-challenge-by-admin.json')
+  },
+  {
+    folder: 'fully update challenge by invalid token',
+    iterationData: require('./testData/challenge/fully-update-challenge-by-invalid-token.json')
+  },
+  {
+    folder: 'fully update challenge by error field',
+    iterationData: require('./testData/challenge/fully-update-challenge-by-error-field.json')
+  },
+  {
+    folder: 'fully update challenge by not foundId'
+  },
+  {
+    folder: 'partially update challenge by admin',
+    iterationData: require('./testData/challenge/partially-update-challenge-by-admin.json')
+  },
+  {
+    folder: 'partially update challenge by invalid token',
+    iterationData: require('./testData/challenge/partially-update-challenge-by-invalid-token.json')
+  },
+  {
+    folder: 'partially update challenge by error field',
+    iterationData: require('./testData/challenge/partially-update-challenge-by-error-field.json')
+  },
+  {
+    folder: 'partially update challenge by not foundId'
+  },
+  {
+    folder: 'delete challenge - id'
+  },
+  {
+    folder: 'delete challenge - invalid token',
+    iterationData: require('./testData/challenge/delete-challenge-by-invalid-token.json')
+  },
+  {
+    folder: 'delete challenge - not found'
+  }
+]
+
+
 const challengeTypeRequests = [
   {
     folder: 'create challengeType by admin',
@@ -298,13 +363,14 @@ const healthRequests = [
 ]
 
 const requests = [
-  ...challengeTypeRequests,
-  ...challengeTrackRequests,
-  ...challengePhaseRequests,
-  ...timelineTemplateRequests,
-  ...challengeTimelineTemplateRequests,
-  ...auditLogRequests,
-  ...healthRequests
+  ...challengeRequests,
+  // ...challengeTypeRequests,
+  // ...challengeTrackRequests,
+  // ...challengePhaseRequests,
+  // ...timelineTemplateRequests,
+  // ...challengeTimelineTemplateRequests,
+  // ...auditLogRequests,
+  // ...healthRequests
 ]
 
 const options = {

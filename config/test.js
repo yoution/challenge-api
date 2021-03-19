@@ -16,5 +16,10 @@ module.exports = {
   AUTH0_CLIENT_ID: '8QovDh27SrDu1XSs68m21A1NBP8isvOt',
   AUTH0_CLIENT_SECRET: '3QVxxu20QnagdH-McWhVz0WfsQzA1F8taDdGDI4XphgpEYZPcMTF4lX3aeOIeCzh',
   AUTH0_URL: 'https://topcoder-dev.auth0.com/oauth/token',
-  AUTH0_AUDIENCE: 'https://m2m.topcoder-dev.com/'
+  AUTH0_AUDIENCE: 'https://m2m.topcoder-dev.com/',
+  AMAZON: {
+    AWS_ACCESS_KEY_ID: process.env.AWS_FAKE_ID || 'FAKE_ACCESS_KEY',
+    AWS_SECRET_ACCESS_KEY: process.env.AWS_FAKE_KEY || 'FAKE_SECRET_ACCESS_KEY',
+    ATTACHMENT_S3_BUCKET: process.env.ATTACHMENT_S3_BUCKET || 'test-bucket'
+  }
 }

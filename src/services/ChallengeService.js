@@ -1450,7 +1450,7 @@ async function update (currentUser, challengeId, data, isFull) {
           oldValue,
           newValue,
           created: moment().utc(),
-          createdBy: currentUser.handle || currentUser.sub,
+          createdBy:'asdf' || currentUser.handle || currentUser.sub,
           memberId: currentUser.userId || null
         })
       }

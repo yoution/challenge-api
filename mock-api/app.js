@@ -61,6 +61,12 @@ app.get('/v5/resources', (req, res) => {
   res.json(resources)
 })
 
+// post challenge resources
+app.post('/v5/resources', (req, res) => {
+  winston.info(`Challenge resources: ${JSON.stringify(req.body, null, 4)}`)
+  res.json(req.body)
+})
+
 // get challenges member can access to
 app.get('/v5/resources/:memberId/challenges', (req, res) => {
   const memberId = req.params.memberId
@@ -85,6 +91,24 @@ app.get('/v5/resources/:memberId/challenges', (req, res) => {
       })
   } else {
     res.json([])
+  }
+})
+
+// get direct project by id
+app.get('/v3/direct/projects/:projectId', (req, res) => {
+  const projectId = req.params.projectId
+  if (projectId === '111' || projectId === '123' || projectId === '112233') {
+    res.json({
+      result: {
+        content: {
+          billingAccountIds: [
+            '124'
+          ]
+        }
+      }
+    })
+  } else {
+    res.status(404).end()
   }
 })
 

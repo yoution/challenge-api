@@ -22,7 +22,7 @@ const basePath = `/${config.API_VERSION}/challenges`
 
 const attachmentContent = fs.readFileSync(path.join(__dirname, '../attachment.txt'))
 
-describe('challenge API E2E tests', () => {
+describe.only('challenge API E2E tests', () => {
   // created entity id
   let id
   let id2
@@ -46,19 +46,21 @@ describe('challenge API E2E tests', () => {
   const notFoundId = uuid()
 
   before(async () => {
+    debugger;
     await testHelper.createData()
     data = testHelper.getData()
     // create an attachment for test
-    attachment = await AttachmentService.uploadAttachment({
+    attachment = await AttachmentService.createAttachment({
       isMachine: true
-    }, data.challenge.id, {
-      attachment: {
-        data: attachmentContent,
-        mimetype: 'plain/text',
+    }, data.challenge.id, 
+       [{
+        // data: attachmentContent,
+        description: 'file description',
         name: 'attachment.txt',
-        size: attachmentContent.length
-      }
-    })
+         url: 'http://testurl.com',
+        fileSize: attachmentContent.length
+      }]
+    )
 
     testChallengeData = _.omit(data.challenge, ['id', 'created', 'createdBy'])
     testChallengeData.phases = [{
@@ -84,7 +86,7 @@ describe('challenge API E2E tests', () => {
   })
 
   describe('create challenge API tests', () => {
-    it('create challenge successfully 1', async () => {
+    it.only('create challenge successfully 1', async () => {
       const challengeData = _.cloneDeep(testChallengeData)
       challengeData.terms = [] // to check if default project terms are added
       const response = await chai.request(app)

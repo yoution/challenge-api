@@ -32,6 +32,8 @@ module.exports = {
     IS_LOCAL_DB: process.env.IS_LOCAL_DB || true,
     DYNAMODB_URL: process.env.DYNAMODB_URL || 'http://localhost:8000',
     S3_API_VERSION: process.env.S3_API_VERSION || '2006-03-01',
+
+    // ATTACHMENT_S3_BUCKET: process.env.ATTACHMENT_S3_BUCKET || 'test-bucket',
     BUCKET_WHITELIST: process.env.BUCKET_WHITELIST || 'topcoder_01, topcoder_02'
   },
 

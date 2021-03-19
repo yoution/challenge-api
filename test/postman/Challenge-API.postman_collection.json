@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "25388aa9-f0cf-4113-999f-a6dd1bbb0dbc",
+		"_postman_id": "9759f056-477e-410d-a114-0478fd17a514",
 		"name": "Challenge-API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -1802,6 +1802,8 @@
 											"    pm.expect(response.duration).to.eq(iterationData.get('duration'))",
 											"    if(!pm.environment.get(\"CHALLENGE_PHASE_ID_2\")) {",
 											"        pm.environment.set(\"CHALLENGE_PHASE_ID_2\", response.id);",
+											"    }else if(!pm.environment.get(\"CHALLENGE_PHASE_ID_3\")) {",
+											"        pm.environment.set(\"CHALLENGE_PHASE_ID_3\", response.id);",
 											"    }",
 											"});"
 										],
@@ -2822,6 +2824,1175 @@
 									"path": [
 										"challenge-phases",
 										"{{CHALLENGE_PHASE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Challenge",
+			"item": [
+				{
+					"name": "create challenge",
+					"item": [
+						{
+							"name": "create challenge by admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is 201`, function () {",
+											"    pm.response.to.have.status(201);",
+											"    const response = pm.response.json()",
+											"    pm.environment.set(\"CHALLENGE_ID\", response.id);",
+											"    pm.expect(response.name).to.eq(iterationData.get('name'))",
+											"    pm.expect(response.description).to.eq(iterationData.get('description'))",
+											"    pm.expect(response.metadata[0].name).to.eq(iterationData.get('metadata_0_name'))",
+											"    pm.expect(response.metadata[0].value).to.eq(iterationData.get('metadata_0_value'))",
+											"    pm.expect(response.prizeSets[0].type).to.eq(iterationData.get('prizeSets_0_type'))",
+											"    pm.expect(response.prizeSets[0].description).to.eq(iterationData.get('prizeSets_0_description'))",
+											"    pm.expect(response.prizeSets[0].prizes[0].type).to.eq(iterationData.get('prizeSets_0_prizes_0_type'))",
+											"    pm.expect(response.prizeSets[0].prizes[0].description).to.eq(iterationData.get('prizeSets_0_prizes_0_description'))",
+											"    pm.expect(response.prizeSets[0].prizes[0].value).to.eq(iterationData.get('prizeSets_0_prizes_0_value'))",
+											"    pm.expect(response.phases[0].phaseId).to.eq(pm.environment.get(\"CHALLENGE_PHASE_ID_2\"))",
+											"    pm.expect(response.phases[0].duration).to.eq(iterationData.get('phases_0_duration'))",
+											"    pm.expect(response.phases[1].phaseId).to.eq(pm.environment.get(\"CHALLENGE_PHASE_ID_3\"))",
+											"    pm.expect(response.phases[1].duration).to.eq(iterationData.get('phases_1_duration'))",
+											"    pm.expect(response.timelineTemplateId).to.eq(pm.environment.get('TIMELINE_TEMPLATE_ID_2'))",
+											"    pm.expect(response.tags[0]).to.eq(iterationData.get('tags_0'))",
+											"    pm.expect(response.groups[0]).to.eq(iterationData.get('groups_0'))",
+											"    pm.expect(response.projectId).to.eq(iterationData.get('projectId'))",
+											"    pm.expect(response.legacy.track).to.eq(iterationData.get('legacy_track'))",
+											"    pm.expect(response.legacy.reviewType).to.eq(iterationData.get('legacy_reviewType'))",
+											"    pm.expect(response.legacy.forumId).to.eq(iterationData.get('legacy_forumId'))",
+											"    pm.expect(response.legacyId).to.eq(iterationData.get('legacyId'))",
+											"    pm.expect(response.trackId).to.eq(pm.environment.get('CHALLENGE_TRACK_ID_2'))",
+											"    pm.expect(response.typeId).to.eq(pm.environment.get('CHALLENGE_TYPE_ID_2'))",
+											"    pm.expect(response.status).to.eq(iterationData.get('status'))",
+											"    pm.expect(response.gitRepoURLs[0]).to.eq(iterationData.get('gitRepoURLs_0'))",
+											"    pm.expect(response.descriptionFormat).to.eq(iterationData.get('descriptionFormat'))",
+											"    pm.expect(response.terms[0].id).to.eq(iterationData.get('terms_0'))",
+											"    pm.expect(response.numOfRegistrants).to.eq(0)",
+											"    pm.expect(response.numOfSubmissions).to.eq(0)",
+											"    ",
+											"",
+											"    if(!pm.environment.get(\"CHALLENGE_ID_2\")) {",
+											"        pm.environment.set(\"CHALLENGE_ID_2\", response.id);",
+											"    }",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"typeId\": \"{{CHALLENGE_TYPE_ID_2}}\",\n    \"name\": \"{{name}}\",\n    \"description\": \"{{description}}\",\n    \"metadata\": [\n        {\n            \"name\": \"{{metadata_0_name}}\",\n            \"value\": \"{{metadata_0_value}}\"\n        }\n    ],\n    \"timelineTemplateId\": \"{{TIMELINE_TEMPLATE_ID_2}}\",\n    \"phases\": [\n        {\n            \"phaseId\": \"{{CHALLENGE_PHASE_ID_2}}\",\n            \"duration\": {{phases_0_duration}}\n        },\n        {\n            \"phaseId\": \"{{CHALLENGE_PHASE_ID_3}}\",\n            \"duration\": {{phases_1_duration}}\n        }\n    ],\n    \"prizeSets\": [\n        {\n            \"type\": \"{{prizeSets_0_type}}\",\n            \"description\": \"{{prizeSets_0_description}}\",\n            \"prizes\": [\n                {\n                    \"description\": \"{{prizeSets_0_prizes_0_description}}\",\n                    \"type\": \"{{prizeSets_0_prizes_0_type}}\",\n                    \"value\": {{prizeSets_0_prizes_0_value}}\n                }\n            ]\n        }\n    ],\n    \"terms\": [\n        {\n            \"id\": \"{{terms_0}}\"\n        }\n    ],\n    \"tags\": [\n        \"{{tags_0}}\"\n    ],\n    \"projectId\": {{projectId}},\n    \"legacy\": {\n        \"track\": \"{{legacy_track}}\",\n        \"reviewType\": \"{{legacy_reviewType}}\",\n        \"forumId\": {{legacy_forumId}},\n        \"directProjectId\": {{legacy_directProjectId}}\n    },\n    \"legacyId\": {{legacyId}},\n    \"trackId\": \"{{CHALLENGE_TRACK_ID_2}}\",\n    \"startDate\": \"{{startDate}}\",\n    \"status\": \"{{status}}\",\n    \"groups\": [\n        \"{{groups_0}}\"\n    ],\n    \"gitRepoURLs\": [\n        \"{{gitRepoURLs_0}}\"\n    ],\n    \"descriptionFormat\": \"{{descriptionFormat}}\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create challenge by invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{jwtToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "create challenge by error field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"typeId\": \"{{CHALLENGE_TYPE_ID_2}}\",\n    \"name\": \"{{name}}\",\n    \"description\": \"{{description}}\",\n    \"metadata\": [\n        {\n            \"name\": \"{{metadata_0_name}}\",\n            \"value\": \"{{metadata_0_value}}\"\n        }\n    ],\n    \"timelineTemplateId\": \"{{TIMELINE_TEMPLATE_ID_2}}\",\n    \"phases\": [\n        {\n            \"phaseId\": \"{{CHALLENGE_PHASE_ID_2}}\",\n            \"duration\": {{phases_0_duration}}\n        },\n        {\n            \"phaseId\": \"{{CHALLENGE_PHASE_ID_3}}\",\n            \"duration\": {{phases_1_duration}}\n        }\n    ],\n    \"prizeSets\": [\n        {\n            \"type\": \"{{prizeSets_0_type}}\",\n            \"description\": \"{{prizeSets_0_description}}\",\n            \"prizes\": [\n                {\n                    \"description\": \"{{prizeSets_0_prizes_0_description}}\",\n                    \"type\": \"{{prizeSets_0_prizes_0_type}}\",\n                    \"value\": {{prizeSets_0_prizes_0_value}}\n                }\n            ]\n        }\n    ],\n    \"terms\": [\n        {\n            \"id\": \"{{terms_0}}\"\n        },\n        {\n            \"id\": \"{{terms_1}}\"\n        }\n    ],\n    \"tags\": [\n        \"{{tags_0}}\"\n    ],\n    \"projectId\": {{projectId}},\n    \"legacy\": {\n        \"track\": \"{{legacy_track}}\",\n        \"reviewType\": \"{{legacy_reviewType}}\",\n        \"forumId\": {{legacy_forumId}}\n    },\n    \"legacyId\": {{legacyId}},\n    \"trackId\": \"{{CHALLENGE_TRACK_ID_2}}\",\n    \"startDate\": \"{{startDate}}\",\n    \"status\": \"{{status}}\",\n    \"groups\": [\n        \"{{groups_0}}\"\n    ],\n    \"gitRepoURLs\": [\n        \"{{gitRepoURLs_0}}\"\n    ],\n    \"descriptionFormat\": \"{{descriptionFormat}}\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "fully update challengePhase",
+					"item": [
+						{
+							"name": "fully update challenge by admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is 200`, function () {",
+											"    ",
+											"    pm.response.to.have.status(200);",
+											"    const response = pm.response.json()",
+											"     ",
+											"    pm.expect(response.name).to.eq(iterationData.get('name'))",
+											"    pm.expect(response.description).to.eq(iterationData.get('description'))",
+											"    pm.expect(response.metadata[0].name).to.eq(iterationData.get('metadata_0_name'))",
+											"    pm.expect(response.metadata[0].value).to.eq(iterationData.get('metadata_0_value'))",
+											"    pm.expect(response.prizeSets[0].type).to.eq(iterationData.get('prizeSets_0_type'))",
+											"    pm.expect(response.prizeSets[0].description).to.eq(iterationData.get('prizeSets_0_description'))",
+											"    pm.expect(response.prizeSets[0].prizes[0].type).to.eq(iterationData.get('prizeSets_0_prizes_0_type'))",
+											"    pm.expect(response.prizeSets[0].prizes[0].description).to.eq(iterationData.get('prizeSets_0_prizes_0_description'))",
+											"    pm.expect(response.prizeSets[0].prizes[0].value).to.eq(iterationData.get('prizeSets_0_prizes_0_value'))",
+											"    ",
+											"    pm.expect(response.phases[0].phaseId).to.eq(pm.environment.get(\"CHALLENGE_PHASE_ID_2\"))",
+											"    pm.expect(response.phases[0].duration).to.eq(iterationData.get('phases_0_duration'))",
+											"    pm.expect(response.phases[1].phaseId).to.eq(pm.environment.get(\"CHALLENGE_PHASE_ID_3\"))",
+											"    pm.expect(response.phases[1].duration).to.eq(iterationData.get('phases_1_duration'))",
+											"    pm.expect(response.timelineTemplateId).to.eq(pm.environment.get('TIMELINE_TEMPLATE_ID_2'))",
+											"    ",
+											"    pm.expect(response.tags[0]).to.eq(iterationData.get('tags_0'))",
+											"    pm.expect(response.groups[0]).to.eq(iterationData.get('groups_0'))",
+											"    pm.expect(response.projectId).to.eq(iterationData.get('projectId'))",
+											"    pm.expect(response.legacy.track).to.eq(iterationData.get('legacy_track'))",
+											"    pm.expect(response.legacy.reviewType).to.eq(iterationData.get('legacy_reviewType'))",
+											"    pm.expect(response.legacy.forumId).to.eq(iterationData.get('legacy_forumId'))",
+											"    pm.expect(response.legacyId).to.eq(iterationData.get('legacyId'))",
+											"    pm.expect(response.trackId).to.eq(pm.environment.get('CHALLENGE_TRACK_ID_2'))",
+											"    pm.expect(response.typeId).to.eq(pm.environment.get('CHALLENGE_TYPE_ID_2'))",
+											"    pm.expect(response.status).to.eq(iterationData.get('status'))",
+											"    pm.expect(response.descriptionFormat).to.eq(iterationData.get('descriptionFormat'))",
+											"    pm.expect(response.terms[0].id).to.eq(iterationData.get('terms_0'))",
+											"});",
+											"/*",
+											"//pm.expect(response.numOfRegistrants).to.eq(0)",
+											"    //pm.expect(response.numOfSubmissions).to.eq(0)",
+											"    //pm.expect(response.winners[0].userId).to.eq(iterationData.get('winners_0_userId'))",
+											"    //pm.expect(response.winners[0].handle).to.eq(iterationData.get('winners_0_handle'))",
+											"    //pm.expect(response.winners[0].placement).to.eq(iterationData.get('winners_0_placement'))",
+											"\"winners\": [",
+											"        {",
+											"            \"userId\": {{winners_0_userId}},",
+											"            \"handle\": \"{{winners_0_handle}}\",",
+											"            \"placement\": {{winners_0_placement}}",
+											"        }",
+											"    ]",
+											"    */"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"typeId\": \"{{CHALLENGE_TYPE_ID_2}}\",\n    \"name\": \"{{name}}\",\n    \"description\": \"{{description}}\",\n    \"metadata\": [\n        {\n            \"name\": \"{{metadata_0_name}}\",\n            \"value\": \"{{metadata_0_value}}\"\n        }\n    ],\n    \"timelineTemplateId\": \"{{TIMELINE_TEMPLATE_ID_2}}\",\n    \"phases\": [\n        {\n            \"phaseId\": \"{{CHALLENGE_PHASE_ID_2}}\",\n            \"duration\": {{phases_0_duration}}\n        },\n        {\n            \"phaseId\": \"{{CHALLENGE_PHASE_ID_3}}\",\n            \"duration\": {{phases_1_duration}}\n        }\n    ],\n    \"prizeSets\": [\n        {\n            \"type\": \"{{prizeSets_0_type}}\",\n            \"description\": \"{{prizeSets_0_description}}\",\n            \"prizes\": [\n                {\n                    \"description\": \"{{prizeSets_0_prizes_0_description}}\",\n                    \"type\": \"{{prizeSets_0_prizes_0_type}}\",\n                    \"value\": {{prizeSets_0_prizes_0_value}}\n                }\n            ]\n        }\n    ],\n    \"terms\": [\n        {\n            \"id\": \"{{terms_0}}\"\n        }\n    ],\n    \"tags\": [\n        \"{{tags_0}}\"\n    ],\n    \"projectId\": {{projectId}},\n    \"legacy\": {\n        \"track\": \"{{legacy_track}}\",\n        \"reviewType\": \"{{legacy_reviewType}}\",\n        \"forumId\": {{legacy_forumId}}\n    },\n    \"legacyId\": {{legacyId}},\n    \"trackId\": \"{{CHALLENGE_TRACK_ID_2}}\",\n    \"startDate\": \"{{startDate}}\",\n    \"status\": \"{{status}}\",\n    \"groups\": [\n        \"{{groups_0}}\"\n    ],\n    \"gitRepoURLs\": [\n        \"{{gitRepoURLs_0}}\"\n    ],\n    \"descriptionFormat\": \"{{descriptionFormat}}\"\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "fully update challenge by not foundId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(`Status code is 404`, function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{not_found_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{not_found_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "fully update challenge by invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{jwtToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "fully update challenge by error field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{name}}\",\n    \"description\": \"{{description}}\",\n    \"isOpen\": {{isOpen}},\n    \"duration\": {{duration}}\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "partially update challenge",
+					"item": [
+						{
+							"name": "partially update challenge by admin",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is 200`, function () {",
+											"    pm.response.to.have.status(200);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.name).to.eq(iterationData.get('name'))",
+											"    pm.expect(response.description).to.eq(iterationData.get('description'))",
+											"    pm.expect(response.isOpen).to.eq(iterationData.get('isOpen'))",
+											"    pm.expect(response.duration).to.eq(iterationData.get('duration'))",
+											"    pm.environment.set(\"CHALLENGE_TRACK_ID\", response.id);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{name}}\",\n    \"description\": \"{{description}}\",\n    \"isOpen\": {{isOpen}},\n    \"duration\": {{duration}}\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "partially update challenge by not foundId",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(`Status code is 404`, function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{not_found_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{not_found_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "partially update challenge by invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{jwtToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "partially update challenge by error field",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"{{name}}\",\n    \"description\": \"{{description}}\",\n    \"isOpen\": {{isOpen}},\n    \"duration\": {{duration}}\n}"
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "get challenge",
+					"item": [
+						{
+							"name": "get challenge - id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get challenge - not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{not_found_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{not_found_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get challenge - all",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(`Status code is 200`, function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/challenges",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "delete challenge",
+					"item": [
+						{
+							"name": "delete challenge - id",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 200\", function () {",
+											"    pm.response.to.have.status(200);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete challenge - not found",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Status code is 404\", function () {",
+											"    pm.response.to.have.status(404);",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{admin_token}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{not_found_id}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{not_found_id}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "delete challenge - invalid token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"const iterationData = pm.iterationData",
+											"const httpCode = iterationData.get('httpCode')",
+											"pm.test(`Status code is ${httpCode}`, function () {",
+											"    pm.response.to.have.status(httpCode);",
+											"    const response = pm.response.json()",
+											"    pm.expect(response.message).to.eq(iterationData.get('message'))",
+											"});"
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "Authorization",
+										"type": "text",
+										"value": "Bearer {{jwtToken}}"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{URL}}/challenges/{{CHALLENGE_ID}}",
+									"host": [
+										"{{URL}}"
+									],
+									"path": [
+										"challenges",
+										"{{CHALLENGE_ID}}"
 									]
 								}
 							},
@@ -3986,6 +5157,9 @@
 											"    pm.expect(response.trackId).to.eq(pm.environment.get(\"CHALLENGE_TRACK_ID_2\"))",
 											"    pm.expect(response.typeId).to.eq(pm.environment.get(\"CHALLENGE_TYPE_ID_2\"))",
 											"    pm.expect(response.timelineTemplateId).to.eq(pm.environment.get(\"TIMELINE_TEMPLATE_ID_2\"))",
+											"    if(!pm.environment.get(\"CHALLENGE_TIMELINE_TEMPLATE_ID_2\")) {",
+											"        pm.environment.set(\"CHALLENGE_TIMELINE_TEMPLATE_ID_2\", response.id);",
+											"    }",
 											"});"
 										],
 										"type": "text/javascript"

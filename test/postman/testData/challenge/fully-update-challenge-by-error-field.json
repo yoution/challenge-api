@@ -1,11 +1,36 @@
 [
     {
-        "isOpen": true,
-        "description": "second phase223",
-        "name": "start phase",
-        "duration": 100,
-        "httpCode": 409,
-        "message": "Phase with name: start phase already exist"
+        "typeId":"a9940d91-9819-4633-bec7-c53a64884ea9",
+        "name":"new name",
+        "description":"updates challenge",
+        "metadata_0_name":"a B c challenge1616116636529",
+        "metadata_0_value":"value",
+        "timelineTemplateId":"6d65bc1f-936d-41fe-98e8-5b950ed6b8c5",
+        "phases_0_duration": 100,
+        "phases_1_duration": 200,
+        "prizeSets_0_type": "placement",
+        "prizeSets_0_description": "ddd",
+        "prizeSets_0_prizes_0_description": "some prize",
+        "prizeSets_0_prizes_0_type": "type",
+        "prizeSets_0_prizes_0_value": 800,
+        "tags_0":"tag1",
+        "projectId":112233,
+        "legacy_track": "track",
+        "legacy_reviewType": "VIRUS SCAN",
+        "legacy_forumId": 123456,
+        "legacyId":445566,
+        "trackId":"c57ed081-a954-459f-94e0-ac1d8a811152",
+        "startDate":"2021-03-19T01:17:16.529Z",
+        "status":"Active",
+        "groups_0": "group1",
+        "gitRepoURLs_0": "https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B",
+        "terms_0": "0fcb41d1-ec7c-44bb-8f3b-f017a61cd708",
+        "descriptionFormat":"HTML",
+        "winners_0_userId": 12345678,
+        "winners_0_handle": "thomaskranitsas",
+        "winners_0_placement": 1,
+        "httpCode": 400,
+        "message": "Default project terms 0fcb41d1-ec7c-44bb-8f3b-f017a61cd708 should not be removed"
     }
 ]
 

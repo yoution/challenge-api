@@ -9,6 +9,7 @@ const constants = require('../app-constants')
 
 const esClient = helper.getESClient()
 
+let challengeTrack
 let challengeType
 let phase
 let phase2
@@ -31,6 +32,15 @@ const deepCompareArrays = (arr1, arr2) => {
  * Create test data
  */
 async function createData () {
+
+  challengeTrack = await helper.create('ChallengeTrack', {
+    id: uuid(),
+    name: `type-${new Date().getTime()}`,
+    description: 'track',
+    isActive: true,
+    abbreviation: 'abbr'
+  })
+
   challengeType = await helper.create('ChallengeType', {
     id: uuid(),
     name: `type-${new Date().getTime()}`,
@@ -93,8 +103,9 @@ async function createData () {
       forumId: 123456
     },
     legacyId: 222,
+    trackId: challengeTrack.id,
     startDate: new Date(),
-    status: constants.challengeStatuses.Active,
+    status: constants.challengeStatuses.Draft,
     groups: ['group1'],
     gitRepoURLs: ['https://mozilla.org/?x=%D1%88%D0%B5%D0%BB%D0%BB%D1%8B'],
     created: new Date(),

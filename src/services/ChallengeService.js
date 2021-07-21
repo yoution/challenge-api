@@ -18,6 +18,7 @@ const PhaseService = require('./PhaseService')
 const ChallengeTypeService = require('./ChallengeTypeService')
 const ChallengeTrackService = require('./ChallengeTrackService')
 const ChallengeTimelineTemplateService = require('./ChallengeTimelineTemplateService')
+const { validateChallengeChanges } = require('../utils/RuleManager')
 
 const esClient = helper.getESClient()
 
@@ -1290,6 +1291,7 @@ async function update (currentUser, challengeId, data, isFull) {
   // helper.ensureNoDuplicateOrNullElements(data.gitRepoURLs, 'gitRepoURLs')
 
   const challenge = await helper.getById('Challenge', challengeId)
+  const oldChallengeData = _.cloneDeep(challenge) // used for validation
   const { billingAccountId, markup } = await helper.getProjectBillingInformation(_.get(challenge, 'projectId'))
   if (billingAccountId && _.isUndefined(_.get(challenge, 'billing.billingAccountId'))) {
     _.set(data, 'billing.billingAccountId', billingAccountId)
@@ -1682,6 +1684,9 @@ async function update (currentUser, challengeId, data, isFull) {
       }
     }
   }
+
+  // perform business rule checks
+  await validateChallengeChanges(updateDetails, oldChallengeData, currentUser)
 
   logger.debug(`Challenge.update id: ${challengeId} Details:  ${JSON.stringify(updateDetails)}`)
   await models.Challenge.update({ id: challengeId }, updateDetails)

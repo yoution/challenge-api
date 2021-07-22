@@ -31,18 +31,18 @@ app.use((req, res, next) => {
 
 // serve challenge V5 API swagger definition
 app.use('/v5/challenges/docs', swaggerUi.serve, swaggerUi.setup(challengeAPISwaggerDoc))
-
-app.use(cors({
-  exposedHeaders: [
-    'X-Prev-Page',
-    'X-Next-Page',
-    'X-Page',
-    'X-Per-Page',
-    'X-Total',
-    'X-Total-Pages',
-    'Link'
-  ]
-}))
+app.use(cors())
+// app.use(cors({
+//   exposedHeaders: [
+//     'X-Prev-Page',
+//     'X-Next-Page',
+//     'X-Page',
+//     'X-Per-Page',
+//     'X-Total',
+//     'X-Total-Pages',
+//     'Link'
+//   ]
+// }))
 app.use(fileUpload({
   limits: { fileSize: config.FILE_UPLOAD_SIZE_LIMIT }
 }))

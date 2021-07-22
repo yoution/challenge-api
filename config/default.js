@@ -26,8 +26,8 @@ module.exports = {
   SCHEDULING_TOPIC: process.env.SCHEDULING_TOPIC || 'challenge.notification.schedule.update',
 
   AMAZON: {
-    // AWS_ACCESS_KEY_ID: process.env.AWS_FAKE_ID || 'FAKE_ACCESS_KEY',
-    // AWS_SECRET_ACCESS_KEY: process.env.AWS_FAKE_KEY || 'FAKE_SECRET_ACCESS_KEY',
+    AWS_ACCESS_KEY_ID: process.env.AWS_FAKE_ID || 'FAKE_ACCESS_KEY',
+    AWS_SECRET_ACCESS_KEY: process.env.AWS_FAKE_KEY || 'FAKE_SECRET_ACCESS_KEY',
     AWS_REGION: process.env.AWS_REGION || 'ap-northeast-1',
     IS_LOCAL_DB: process.env.IS_LOCAL_DB || true,
     DYNAMODB_URL: process.env.DYNAMODB_URL || 'http://localhost:7777',
